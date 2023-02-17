@@ -110,7 +110,7 @@ h2{
   text-align: center;
   background-color: #2B4257;
   color: #fff;
-  width: 60px;
+  width: 100px;
   height: 30px;
   border-radius: 6px;
 }
@@ -122,6 +122,16 @@ input{
 input[data-v-7a7a37b1], select[data-v-7a7a37b1]{
   text-align: center;
   font-weight: bold;
+}
+
+@media (max-width:767px){
+  input{
+    width: 100px;
+  }
+
+  select{
+    width: 50px;
+  }
 }
 
 </style>

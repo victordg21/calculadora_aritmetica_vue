@@ -1,5 +1,44 @@
 <script setup>
+import { reactive } from 'vue';
 
+
+const filtros = reactive({
+  filtro: 'soma',
+  numberOne: 0,
+  numberTwo: 0
+})
+
+function fazSoma(){
+  return (parseInt(filtros.numberOne) + parseInt(filtros.numberTwo))
+}
+
+function fazSubtracao(){
+  return (filtros.numberOne - filtros.numberTwo)
+}
+
+function fazMultiplicacao(){
+  return (filtros.numberOne * filtros.numberTwo)
+}
+
+function fazDivisao(){
+  return (filtros.numberOne / filtros.numberTwo)
+}
+
+const dizCalculo = () => {
+  const {filtro} = filtros
+
+  switch (filtro){
+    case 'soma':
+      return fazSoma()
+    case 'subtração':
+      return fazSubtracao()
+    case 'multiplicação':
+      return fazMultiplicacao()
+    case 'divisão':
+      return fazDivisao()
+    
+  }
+}
 </script>
 
 <template>
@@ -12,16 +51,16 @@
   </header>
   <div class="container">
     <form>
-      <input type="number" class="number-one" placeholder="Digite um numero">
-      <select>
+      <input @change="evento => filtros.numberOne = evento.target.value" type="number" class="number-one" placeholder="Digite um número">
+      <select @change="evento => filtros.filtro = evento.target.value">
         <option value="soma">Soma</option>
         <option value="subtração">Subtração</option>
-        <option value="multiplicação">multiplicação</option>
+        <option value="multiplicação">Multiplicação</option>
         <option value="divisão">Divisão</option>
       </select>
-      <input type="number" class="number-two" placeholder="Digite um numero">
+      <input @change="evento => filtros.numberTwo = evento.target.value" type="number" class="number-two" placeholder="Digite um número">
     </form>
-    <h2>345</h2>
+    <h2>{{dizCalculo()}}</h2>
   </div>
 </template>
 
@@ -52,9 +91,13 @@ form{
   padding-top: 32px;
 }
 
+input::placeholder{
+  text-align: center;
+}
+
 input,select{
   border-radius: 6px;
-  height: 35px;
+  height: 55px;
 }
 
 select{
@@ -67,9 +110,18 @@ h2{
   text-align: center;
   background-color: #2B4257;
   color: #fff;
-  width: 80px;
+  width: 60px;
   height: 30px;
   border-radius: 6px;
+}
+
+input{
+  font-size: 20px;
+}
+
+input[data-v-7a7a37b1], select[data-v-7a7a37b1]{
+  text-align: center;
+  font-weight: bold;
 }
 
 </style>
